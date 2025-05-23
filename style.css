@@ -414,6 +414,10 @@ body.no-scroll {
     z-index: 1;
 }
 
+.limite {
+    font-size: 1.5rem;
+}
+
 .event-container {
     display: flex;
     flex-wrap: wrap;

@@ -14,7 +14,7 @@ if (anchoPantalla < 900) { // Móviles grandes/tablets pequeñas
 } else if (anchoPantalla < 1024) { // Tablets
     numMariposas = 15;
 } else { // Desktop
-    numMariposas = 20;
+    numMariposas = 15;
 }
 for (let i = 0; i < numMariposas; i++) {
     crearMariposa(mariposaImg1);
@@ -235,13 +235,22 @@ document.getElementById("rsvp-form").addEventListener("submit", function(e) {
             alert("Error al enviar: " + error);
         });
 });
-
-document.addEventListener('click', () => {
+window.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('audio');
-    if (audio.paused) {
-        audio.play();
-    }
-}, { once: true });
+
+    // Intenta reproducir automáticamente
+    audio.play().catch(() => {
+        // Si el navegador lo bloquea, espera una interacción
+        const handleFirstInteraction = () => {
+            audio.play();
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('keydown', handleFirstInteraction);
+        };
+
+        document.addEventListener('click', handleFirstInteraction);
+        document.addEventListener('keydown', handleFirstInteraction);
+    });
+});
 
 
 const audio = document.getElementById('audio');
