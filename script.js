@@ -9,9 +9,7 @@ const mundo = document.getElementById("mundo");
 
 const anchoPantalla = window.innerWidth;
 
-if (anchoPantalla < 480) { // Móviles pequeños
-    numMariposas = 5;
-} else if (anchoPantalla < 768) { // Móviles grandes/tablets pequeñas
+if (anchoPantalla < 900) { // Móviles grandes/tablets pequeñas
     numMariposas = 10;
 } else if (anchoPantalla < 1024) { // Tablets
     numMariposas = 15;
