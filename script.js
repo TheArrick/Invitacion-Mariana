@@ -107,48 +107,7 @@ function crearMariposa(mariposaT) {
         mundo.removeChild(mariposa);
     };
 }
-/*function crearMariposa(mariposaT) {
-    const mariposa = document.createElement("img");
-    mariposa.className = "mariposa";
-    mariposa.src = mariposaT;
 
-    // Posición y velocidad inicial aleatoria
-    let x = Math.random() * mundo.offsetWidth - 200;
-    let y = Math.random() * mundo.offsetHeight;
-    let velX = (Math.random() - 0.5) * 3;
-    let velY = (Math.random() - 0.5) * 3;
-    let rotacion = Math.random() * 360;
-
-    mariposa.style.left = `${x}px`;
-    mariposa.style.top = `${y}px`;
-    mariposa.style.setProperty("--rotacion", `${rotacion}deg`);
-
-    mundo.appendChild(mariposa);
-
-    // Animación
-    function animar() {
-        x += velX;
-        y += velY;
-
-        // Rebote en los bordes del mundo (no del viewport)
-        if (x <= 0 || x >= mundo.offsetWidth - 60) {
-            velX *= -1;
-            rotacion = Math.atan2(velY, velX) * (180 / Math.PI);
-        }
-        if (y <= 0 || y >= mundo.offsetHeight - 60) {
-            velY *= -1;
-            rotacion = Math.atan2(velY, velX) * (180 / Math.PI);
-        }
-
-        mariposa.style.left = `${x}px`;
-        mariposa.style.top = `${y}px`;
-        mariposa.style.setProperty("--rotacion", `${rotacion}deg`);
-
-        requestAnimationFrame(animar);
-    }
-
-    animar();
-}*/
 // Countdown
 function updateCountdown() {
     const countDownDate = new Date("Jun 7, 2025 17:30:00").getTime();
@@ -193,7 +152,6 @@ function checkScroll() {
 window.addEventListener('scroll', checkScroll);
 window.addEventListener('load', checkScroll);
 
-// Efecto hover más suave para los botones
 const buttons = document.querySelectorAll('.btn, .submit-btn');
 buttons.forEach(button => {
     button.addEventListener('mouseenter', () => {
