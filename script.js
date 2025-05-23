@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card2.classList.remove('hidden');
         card1.classList.add('hidden');
         body.classList.remove('bloquear-scroll');
-
+        mundo.classList.remove('hidden');
         body.style.position = 'static';
 
         boton.style.display = 'none';
