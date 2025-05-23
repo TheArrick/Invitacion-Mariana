@@ -1,20 +1,19 @@
 
 numMariposas = 0;
-const mariposaImg1 = "images/R.png"; // Cambia por tu imagen
-const mariposaImg2 = "images/R2.png"; // Cambia por tu imagen
-const mariposaImg3 = "images/R3.png"; // Cambia por tu imagen
+const mariposaImg1 = "images/R.png";
+const mariposaImg2 = "images/R2.png"; const mariposaImg3 = "images/R3.png";
 const mariposaImg4 = "images/R4.png";
 const mariposaImg6 = "images/R6.png";
 const mundo = document.getElementById("mundo");
 
 const anchoPantalla = window.innerWidth;
 
-if (anchoPantalla < 900) { // Móviles grandes/tablets pequeñas
+if (anchoPantalla < 900) {
     numMariposas = 10;
-} else if (anchoPantalla < 1024) { // Tablets
-    numMariposas = 15;
+} else if (anchoPantalla < 1024) {
+    numMariposas = 20;
 } else { // Desktop
-    numMariposas = 15;
+    numMariposas = 20;
 }
 for (let i = 0; i < numMariposas; i++) {
     crearMariposa(mariposaImg1);
@@ -235,35 +234,12 @@ document.getElementById("rsvp-form").addEventListener("submit", function(e) {
             alert("Error al enviar: " + error);
         });
 });
-window.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('audio');
-
-    // Intenta reproducir automáticamente
-    audio.play().catch(() => {
-        // Si el navegador lo bloquea, espera una interacción
-        const handleFirstInteraction = () => {
-            audio.play();
-            document.removeEventListener('click', handleFirstInteraction);
-            document.removeEventListener('keydown', handleFirstInteraction);
-        };
-
-        document.addEventListener('click', handleFirstInteraction);
-        document.addEventListener('keydown', handleFirstInteraction);
-    });
-});
 
 
 const audio = document.getElementById('audio');
 const toggleBtn = document.getElementById('music-toggle');
 
-// Asegura reproducción automática (si el navegador lo permite)
-window.addEventListener('DOMContentLoaded', () => {
-    audio.volume = 1;
-    audio.play().catch(() => {
-        // Espera la interacción del usuario si autoplay es bloqueado
-        toggleBtn.textContent = '▶️';
-    });
-});
+
 
 // Reproduce o pausa el audio
 toggleBtn.addEventListener('click', () => {
@@ -297,13 +273,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         const currentScrollY = window.scrollY;
 
-        // Scroll hacia ABAJO (oculta card1, muestra card2)
         if (currentScrollY > lastScrollY && isCard1Visible) {
             card1.classList.add('hidden');
             card2.classList.remove('hidden');
             isCard1Visible = false;
         }
-        // Scroll hacia ARRIBA (muestra card1, oculta card2)
         else if (currentScrollY < lastScrollY && !isCard1Visible && currentScrollY <= scrollThreshold) {
             card1.classList.remove('hidden');
             card2.classList.add('hidden');
@@ -313,3 +287,33 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollY = currentScrollY;
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const boton = document.getElementById('blockbtn');
+    const card1 = document.getElementById('card1');
+    const card2 = document.getElementById('card2');
+
+
+    body.classList.add('bloquear-scroll');
+
+    boton.addEventListener('click', () => {
+        card2.classList.remove('hidden');
+        card1.classList.add('hidden');
+        body.classList.remove('bloquear-scroll');
+
+        body.style.position = 'static';
+
+        boton.style.display = 'none';
+        if (audio.paused) {
+            audio.play();
+            toggleBtn.textContent = '⏸️';
+        } else {
+            audio.pause();
+            toggleBtn.textContent = '▶️';
+        }
+
+    });
+});
+
+
